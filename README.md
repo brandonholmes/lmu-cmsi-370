@@ -9,8 +9,13 @@
 
 ## Project Layout
 
-- Milestones
-  - Milestone01
-  - Milestone02
-  - Milestone03
-  - Milestone04
+```
+project
+|   README.md
+|
+└───Milestones
+|   |   Milestone01
+|   |   Milestone02
+|   |   Milestone03
+|   |   Milestone04
+```
