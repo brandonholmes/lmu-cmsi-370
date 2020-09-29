@@ -6,3 +6,11 @@
 - Brandon Holmes
 - Justin Yee
 - Jacob Longo
+
+## Project Layout
+
+- Milestones
+  - Milestone01
+  - Milestone02
+  - Milestone03
+  - Milestone04
