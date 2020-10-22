@@ -14,7 +14,7 @@ project
 |   README.md
 |
 └───Milestones
-|   |   Milestone01
+|   |   Milestone01.pdf
 |   |   Milestone02
 |   |   Milestone03
 |   |   Milestone04
