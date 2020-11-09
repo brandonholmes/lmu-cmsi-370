@@ -8,9 +8,10 @@ class SplashScreen extends Component {
   render() {
     return (
       <View style={styles.titleScreen}>
-        <Text>Let's</Text>
-        <Text>Travel!</Text>
+        <Text style = {styles.fontSizeTitle}>Let's</Text>
+        <Text style = {styles.fontSizeTitle}>Travel!</Text>
         <StatusBar style="auto" />
+
       </View>
     );
   }
@@ -38,12 +39,12 @@ const styles = StyleSheet.create({
     flex:1,
     backgroundColor: '#34526D',
     alignItems: 'center',
-    fontSize: 50,
     fontWeight: "bold",
     justifyContent: 'center',
   },
 
+  fontSizeTitle:{
+    fontSize: 80
+  }
 
 });
-
-
