@@ -18,4 +18,6 @@ project
 |   |   Milestone02
 |   |   Milestone03
 |   |   Milestone04
+|
+└───LetsTravelApp
 ```
