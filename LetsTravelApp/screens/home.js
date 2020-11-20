@@ -4,10 +4,24 @@ import { SearchBar } from "react-native-elements";
 import MapView from "react-native-maps";
 
 export default function Home() {
+<<<<<<< HEAD
   const [text, setText] = React.useState("");
   //   state = {
   //     search: "",
   //   };
+=======
+    const [isVisible, setIsVisible] = useState(false);
+    const list = [
+      { title: 'Canada' },
+      { title: 'Mexico' },
+      {
+        title: 'Cancel',
+        containerStyle: { backgroundColor: 'red' },
+        titleStyle: { color: 'white' },
+        onPress: () => setIsVisible(false),
+      },
+    ];
+>>>>>>> 40de5e5fa490df1193f680de00ea24258950caa3
 
   //   updateSearch = (search) => {
   //     this.setState({ search });
