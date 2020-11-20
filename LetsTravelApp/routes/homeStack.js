@@ -3,10 +3,18 @@ import { createAppContainer } from "react-navigation";
 
 import Loading from "../screens/loading";
 import Home from "../screens/home";
+import Main from "../screens/mainPage";
 
 const screens = {
   Loading: {
     screen: Loading,
+    navigationOptions: {
+      headerShown: false,
+    },
+  },
+  Main: {
+    screen: Main,
+    headerShown: false,
     navigationOptions: {
       headerShown: false,
     },
