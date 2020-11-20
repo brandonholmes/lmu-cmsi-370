@@ -5,8 +5,8 @@ import { Icon, Button, BottomSheet, ListItem } from 'react-native-elements';
 export default function Home() {
     const [isVisible, setIsVisible] = useState(false);
     const list = [
-      { title: 'List Item 1' },
-      { title: 'List Item 2' },
+      { title: 'Canada' },
+      { title: 'Mexico' },
       {
         title: 'Cancel',
         containerStyle: { backgroundColor: 'red' },
