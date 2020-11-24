@@ -7,7 +7,7 @@ import Currency from "../screens/currency";
 import Main from "../screens/mainPage";
 import POI from "../screens/pointsOfInterest";
 import Safety from "../screens/safetyTips";
-import DoDont from "../screens/doAndDont";
+import DoDont from "../screens/doDont";
 
 const screens = {
   Loading: {
