@@ -12,6 +12,7 @@ import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 
 import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
+let id = 0;
 
 class DefaultMarkers extends React.Component {
   constructor(props) {
@@ -24,7 +25,6 @@ class DefaultMarkers extends React.Component {
   onMapPress(e) {
     this.setState({
       markers: [
-        this.state.markers,
         {
           coordinate: e.nativeEvent.coordinate,
           key: id++,
@@ -35,13 +35,21 @@ class DefaultMarkers extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <MapView style={styles.mapStyle} onPress={(e) => this.onMapPress(e)}>
-          {this.state.markers.map((marker) => (
-            <Marker key={marker.key} coordinate={marker.coordinate} />
-          ))}
-        </MapView>
-      </View>
+      <MapView
+        style={styles.mapStyle}
+        // initialRegion={{
+        //   latitude: 28.95761453,
+        //   longitude: 50.83710976,
+        //   latitudeDelta: 0.02,
+        //   longitudeDelta: 0.02,
+        // }}
+        provider={this.props.provider}
+        onPress={(e) => this.onMapPress(e)}
+      >
+        {this.state.markers.map((marker) => (
+          <Marker key={marker.key} coordinate={marker.coordinate} />
+        ))}
+      </MapView>
     );
   }
 }
@@ -112,6 +120,7 @@ export default function Home({ navigation }) {
   const pressHandler = () => {
     setIsVisible(true);
   };
+
   function checkInput() {
     if (countries.has(text)) {
       setCountry(text);
@@ -134,7 +143,6 @@ export default function Home({ navigation }) {
           onChangeText={(text) => setText(text)}
           clearButtonMode="while-editing"
           clearTextOnFocus={true}
-          // ref={(text) => (this.textInput = text)}
         />
         <View style={styles.submitButton}>
           <Button type="solid" title="Submit" onPress={checkInput} />
