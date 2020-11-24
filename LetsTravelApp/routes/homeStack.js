@@ -7,6 +7,7 @@ import Currency from "../screens/currency";
 import Main from "../screens/mainPage";
 import POI from "../screens/pointsOfInterest";
 import Safety from "../screens/safetyTips";
+import DoDont from "../screens/doAndDont";
 
 const screens = {
   Loading: {
@@ -57,6 +58,19 @@ const screens = {
   },
   Safety: {
     screen: Safety,
+    navigationOptions: {
+      headerShown: true,
+      title: "",
+      headerStyle: {
+        backgroundColor: "#34526D",
+        shadowColor: "transparent",
+      },
+      headerTintColor: "#fff",
+      headerBackTitle: "Back",
+    },
+  },
+  DoDont: {
+    screen: DoDont,
     navigationOptions: {
       headerShown: true,
       title: "",

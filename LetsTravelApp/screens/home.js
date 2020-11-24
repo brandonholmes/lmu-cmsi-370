@@ -12,7 +12,6 @@ import MapView from "react-native-maps";
 import { Marker } from "react-native-maps";
 
 import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
-import { set } from "react-native-reanimated";
 
 class DefaultMarkers extends React.Component {
   constructor(props) {
@@ -91,7 +90,18 @@ export default function Home({ navigation }) {
         }
       },
     },
-    { title: "Do's and Don'ts" },
+    {
+      title: "Do's and Don'ts",
+      onPress: () => {
+        if (validCountry) {
+          setIsVisible(false);
+          navigation.navigate("DoDont", { country: country });
+        } else {
+          setCountry("Enter Above First");
+          setIsVisible(false);
+        }
+      },
+    },
     {
       title: "Cancel",
       containerStyle: { backgroundColor: "red" },

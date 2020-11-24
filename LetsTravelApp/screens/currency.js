@@ -1,4 +1,4 @@
-import React, { useState, setState, Component } from "react";
+import React from "react";
 import {
   TouchableWithoutFeedback,
   StyleSheet,

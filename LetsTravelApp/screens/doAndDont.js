@@ -1,22 +1,25 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import logo from "../assets/Temple.png";
+import { StyleSheet, View, Text } from "react-native";
 
-const USAsummary =
-  "Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.";
+const Do =
+  "Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum.";
+const Dont =
+  "Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.";
 
-export default function SafteyTips() {
+export default function DoAndDont() {
   return (
     <View style={styles.background}>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}> Points of Interest </Text>
+        <Text style={styles.titleText}> Do's And Don'ts </Text>
       </View>
 
       <View style={styles.paragraph}>
-        <Text> {USAsummary} </Text>
+        <Text> {Do} </Text>
       </View>
 
-      <Image source={logo} style={styles.logo} />
+      <View style={styles.paragraph}>
+        <Text> {Dont} </Text>
+      </View>
     </View>
   );
 }
