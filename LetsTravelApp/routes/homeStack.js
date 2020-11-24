@@ -3,7 +3,10 @@ import { createAppContainer } from "react-navigation";
 
 import Loading from "../screens/loading";
 import Home from "../screens/home";
+import Currency from "../screens/currency";
 import Main from "../screens/mainPage";
+import POI from "../screens/pointsOfInterests";
+import Safety from "../screens/safetyTips";
 
 const screens = {
   Loading: {
@@ -14,16 +17,53 @@ const screens = {
   },
   Main: {
     screen: Main,
-    headerShown: false,
     navigationOptions: {
       headerShown: false,
     },
   },
   Home: {
     screen: Home,
-    headerShown: false,
     navigationOptions: {
       headerShown: false,
+    },
+  },
+  Currency: {
+    screen: Currency,
+    navigationOptions: {
+      headerShown: true,
+      title: "",
+      headerStyle: {
+        backgroundColor: "#34526D",
+        shadowColor: "transparent",
+      },
+      headerTintColor: "#fff",
+      headerBackTitle: "Back",
+    },
+  },
+  POI: {
+    screen: POI,
+    navigationOptions: {
+      headerShown: true,
+      title: "",
+      headerStyle: {
+        backgroundColor: "#34526D",
+        shadowColor: "transparent",
+      },
+      headerTintColor: "#fff",
+      headerBackTitle: "Back",
+    },
+  },
+  Safety: {
+    screen: Safety,
+    navigationOptions: {
+      headerShown: true,
+      title: "",
+      headerStyle: {
+        backgroundColor: "#34526D",
+        shadowColor: "transparent",
+      },
+      headerTintColor: "#fff",
+      headerBackTitle: "Back",
     },
   },
 };

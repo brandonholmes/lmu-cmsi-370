@@ -15,7 +15,7 @@ export default function Loading({ navigation }) {
   //   },
   // ];
 
-  const pressHandler = () => {
+  const goHome = () => {
     navigation.navigate("Home");
   };
   return (
@@ -25,17 +25,8 @@ export default function Loading({ navigation }) {
         <Text>
           <Icon name="plane" type="font-awesome" color="black" size={102} />
         </Text>
-        <Button title="Start" onPress={pressHandler} />
+        <Button title="Start" onPress={goHome} />
       </View>
-      {/* <BottomSheet isVisible={isVisible}>
-        {list.map((l, i) => (
-          <ListItem key={i} containerStyle={l.containerStyle} onPress={l.onPress}>
-            <ListItem.Content>
-              <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
-            </ListItem.Content>
-          </ListItem>
-        ))}
-      </BottomSheet> */}
     </View>
   );
 }
