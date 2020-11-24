@@ -18,11 +18,7 @@ export default function SafteyTips({ navigation }) {
 
   return (
     <View style={styles.background}>
-        <View>
-            <Button>
-                Back
-            </Button>
-        </View>
+
         <View style={styles.titleContainer}>
             <Text style={styles.titleText} > Saftey Tips </Text>
         </View>
