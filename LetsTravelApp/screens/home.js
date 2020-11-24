@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Dimensions, TextInput } from "react-native";
 import { SearchBar } from "react-native-elements";
 import MapView from "react-native-maps";
 
-export default function Home() {
+export default function Home({ navigation }) {
   const [text, setText] = React.useState("");
   //   state = {
   //     search: "",
@@ -13,6 +13,14 @@ export default function Home() {
   //     this.setState({ search });
   //   };
   //   const { search } = this.state;
+
+  function SwitchScreens(text) {
+    if(text === "USA"){
+      navigation.navigate("SafteyTips");
+      console.log("On your way to the USA Saftey");
+    }
+ }
+
   return (
     <View style={styles.container}>
       <MapView style={styles.mapStyle} />
@@ -21,8 +29,7 @@ export default function Home() {
         style={styles.textInput}
         inlineImageLeft="search_icon"
         placeholder="Country"
-        onChangeText={(text) => setText(text)}
-      />
+        onChangeText={SwitchScreens}/>
     </View>
   );
 }

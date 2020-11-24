@@ -4,14 +4,17 @@ import { createAppContainer } from "react-navigation";
 import Loading from "../screens/loading";
 import Home from "../screens/home";
 import Main from "../screens/mainPage";
+import SafteyTips from "../screens/safteyTips";
 
 const screens = {
+  
   Loading: {
     screen: Loading,
     navigationOptions: {
       headerShown: false,
     },
   },
+
   Main: {
     screen: Main,
     headerShown: false,
@@ -19,6 +22,7 @@ const screens = {
       headerShown: false,
     },
   },
+
   Home: {
     screen: Home,
     headerShown: false,
@@ -26,6 +30,15 @@ const screens = {
       headerShown: false,
     },
   },
+
+  SafteyTips: {
+      screen: SafteyTips,
+      headerShown: false,
+      navigationOptions: {
+        headerShown: false,
+      },
+  },
+
 };
 
 const HomeStack = createStackNavigator(screens);
