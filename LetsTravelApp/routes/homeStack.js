@@ -5,6 +5,7 @@ import Loading from "../screens/loading";
 import Home from "../screens/home";
 import Main from "../screens/mainPage";
 import SafteyTips from "../screens/safteyTips";
+import DoAndDont from "../screens/DoAndDont";
 
 const screens = {
   
@@ -38,6 +39,14 @@ const screens = {
         headerShown: false,
       },
   },
+
+  DoAndDont: {
+    screen: DoAndDont,
+    headerShown: false,
+    navigationOptions: {
+      headerShown: false,
+    },
+  }
 
 };
 

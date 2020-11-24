@@ -16,7 +16,7 @@ export default function Home({ navigation }) {
 
   function SwitchScreens(text) {
     if(text === "USA"){
-      navigation.navigate("SafteyTips");
+      navigation.navigate("DoAndDont");
       console.log("On your way to the USA Saftey");
     }
  }
