@@ -26,9 +26,6 @@ export default function currency({ navigation }) {
     Canada: 1.31,
   };
   const country = navigation.getParam("country");
-  console.log(country);
-  //   const { country } = this.props.route.params.country.name;
-  //   const country = this.props.navigation.getParam("country", "");
   const [text, setText] = React.useState("");
   const [results, setResults] = React.useState("");
   const exchanges = {

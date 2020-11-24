@@ -5,7 +5,7 @@ import Loading from "../screens/loading";
 import Home from "../screens/home";
 import Currency from "../screens/currency";
 import Main from "../screens/mainPage";
-import POI from "../screens/pointsOfInterests";
+import POI from "../screens/pointsOfInterest";
 import Safety from "../screens/safetyTips";
 
 const screens = {
@@ -15,12 +15,14 @@ const screens = {
       headerShown: false,
     },
   },
+
   Main: {
     screen: Main,
     navigationOptions: {
       headerShown: false,
     },
   },
+
   Home: {
     screen: Home,
     navigationOptions: {
