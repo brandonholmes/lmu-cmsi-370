@@ -5,6 +5,7 @@ import Loading from "../screens/loading";
 import Home from "../screens/home";
 import Main from "../screens/mainPage";
 import SafteyTips from "../screens/safteyTips";
+import PointsOfInterest from "../screens/pointsOfInterest"
 
 const screens = {
   
@@ -32,12 +33,20 @@ const screens = {
   },
 
   SafteyTips: {
-      screen: SafteyTips,
+    screen: SafteyTips,
+    headerShown: false,
+    navigationOptions: {
       headerShown: false,
-      navigationOptions: {
-        headerShown: false,
-      },
+    },
   },
+
+  PointsOfInterest: {
+    screen: PointsOfInterest,
+    headerShown: true,
+    navigationOptions: {
+      headerShown: true,
+    }
+  }
 
 };
 
