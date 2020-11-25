@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import logo from "../assets/Temple.png";
 import { data } from "./countryData";
 
 export default function SafteyTips({ navigation }) {
   const country = navigation.getParam("country");
   const pointOfInterest = data[country].Interest;
+  const MexicoImage = data[country].Image;
   return (
     <View style={styles.background}>
       <View style={styles.titleContainer}>
@@ -16,7 +16,7 @@ export default function SafteyTips({ navigation }) {
         <Text style={styles.textInterest}> {pointOfInterest} </Text>
       </View>
 
-      <Image source={logo} style={styles.logo} />
+      <Image source={MexicoImage} style={styles.logo} />
     </View>
   );
 }
