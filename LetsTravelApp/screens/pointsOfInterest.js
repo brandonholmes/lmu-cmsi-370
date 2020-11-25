@@ -1,11 +1,19 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import logo from "../assets/Temple.png";
+import MexicoImage from "../assets/Temple.png";
+import CanadaImage from "../assets/Temple.png";
+import USAImage from "../assets/Temple.png";
 
-const USAsummary =
-  "Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.";
+const Fillsummary =
+  "Loresm ipsum dolor sit amet, consectetur adipiscing elit." + 
+  "Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque." + 
+  "Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem." + 
+  "Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina." + 
+  "Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.";
 
-export default function SafteyTips() {
+export default function pointsOfInterest() {
+  const country = navigation.getParam("country");
+  const [text, setText] = React.useState("");
   return (
     <View style={styles.background}>
       <View style={styles.titleContainer}>
@@ -13,10 +21,10 @@ export default function SafteyTips() {
       </View>
 
       <View style={styles.paragraph}>
-        <Text> {USAsummary} </Text>
+        <Text> {Fillsummary} </Text>
       </View>
 
-      <Image source={logo} style={styles.logo} />
+      <Image source={MexicoImage} style={styles.Image} />
     </View>
   );
 }
@@ -57,7 +65,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
   },
-  logo: {
+  Image: {
     marginTop: 50,
     alignSelf: "center",
     width: 350,
