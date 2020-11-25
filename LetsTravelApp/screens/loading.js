@@ -3,23 +3,11 @@ import { StyleSheet, View, Text } from "react-native";
 import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
 
 export default function Loading({ navigation }) {
-  // const [isVisible, setIsVisible] = useState(false);
-  // const list = [
-  //   { title: 'List Item 1' },
-  //   { title: 'List Item 2' },
-  //   {
-  //     title: 'Cancel',
-  //     containerStyle: { backgroundColor: 'red' },
-  //     titleStyle: { color: 'white' },
-  //     onPress: () => setIsVisible(false),
-  //   },
-  // ];
-
   const goHome = () => {
     navigation.navigate("Home");
   };
   return (
-    <View style={styles.background}>
+    <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}>Let's Travel</Text>
         <Text>
@@ -32,7 +20,7 @@ export default function Loading({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  background: {
+  container: {
     flex: 1,
     backgroundColor: "#34526D",
   },

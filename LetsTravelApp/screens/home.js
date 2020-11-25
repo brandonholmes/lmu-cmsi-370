@@ -1,4 +1,4 @@
-import React, { useState, setState, Component } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -31,18 +31,14 @@ class DefaultMarkers extends React.Component {
         },
       ],
     });
+    Keyboard.dismiss();
+    console.log(e.nativeEvent.coordinate);
   }
 
   render() {
     return (
       <MapView
         style={styles.mapStyle}
-        // initialRegion={{
-        //   latitude: 28.95761453,
-        //   longitude: 50.83710976,
-        //   latitudeDelta: 0.02,
-        //   longitudeDelta: 0.02,
-        // }}
         provider={this.props.provider}
         onPress={(e) => this.onMapPress(e)}
       >
@@ -117,6 +113,7 @@ export default function Home({ navigation }) {
       onPress: () => setIsVisible(false),
     },
   ];
+
   const pressHandler = () => {
     setIsVisible(true);
   };
@@ -192,10 +189,12 @@ const styles = StyleSheet.create({
   },
   navButton: {
     position: "absolute",
+    justifyContent: "center",
+    flex: 1,
     alignItems: "center",
     color: "#fff",
-    marginTop: 600,
-    marginLeft: 155,
+    bottom: "20%",
+    right: "43%",
   },
   search: {
     flex: 2,
@@ -228,8 +227,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     textAlign: "center",
-    width: 300,
-    height: 60,
     alignSelf: "center",
     color: "#000",
     position: "absolute",

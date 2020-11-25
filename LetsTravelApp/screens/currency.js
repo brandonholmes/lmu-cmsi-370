@@ -8,31 +8,14 @@ import {
   TextInput,
 } from "react-native";
 import { Button } from "react-native-elements";
+import { data } from "./countryData";
 
 export default function currency({ navigation }) {
   const homeCountry = "Mexico";
-  const canadaExchange = {
-    Mexico: 15.39,
-    USA: 0.77,
-  };
-
-  const mexicoExchange = {
-    USA: 0.76,
-    Canada: 15.41,
-  };
-
-  const usaExchange = {
-    Mexico: 20.17,
-    Canada: 1.31,
-  };
   const country = navigation.getParam("country");
+
   const [text, setText] = React.useState("");
   const [results, setResults] = React.useState("");
-  const exchanges = {
-    USA: usaExchange,
-    Mexico: mexicoExchange,
-    Canada: canadaExchange,
-  };
 
   const dollarSymbol = {
     USA: "$",
@@ -42,10 +25,9 @@ export default function currency({ navigation }) {
 
   function calculateAmount() {
     setResults(
-      dollarSymbol[country] +
-        (exchanges[country][homeCountry] * text).toFixed(2)
+      data[homeCountry].dollarSymbol +
+        (data[country].exchange[homeCountry] * text).toFixed(2)
     );
-    // setResults(exchanges[country].peso * text);
   }
 
   return (
@@ -78,8 +60,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 30,
     textAlign: "center",
-    width: 300,
-    height: 60,
     alignSelf: "center",
     color: "#000",
     marginTop: 50,

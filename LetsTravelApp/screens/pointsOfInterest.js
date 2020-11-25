@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import logo from "../assets/Temple.png";
+import { data } from "./countryData";
 
-const USAsummary =
-  "Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.";
-
-export default function SafteyTips() {
+export default function SafteyTips({ navigation }) {
+  const country = navigation.getParam("country");
+  const pointOfInterest = data[country].Interest;
   return (
     <View style={styles.background}>
       <View style={styles.titleContainer}>
@@ -13,7 +13,7 @@ export default function SafteyTips() {
       </View>
 
       <View style={styles.paragraph}>
-        <Text> {USAsummary} </Text>
+        <Text style={styles.textInterest}> {pointOfInterest} </Text>
       </View>
 
       <Image source={logo} style={styles.logo} />
@@ -58,10 +58,13 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   logo: {
-    marginTop: 50,
+    marginTop: 30,
     alignSelf: "center",
     width: 350,
     height: 300,
     overflow: "hidden",
+  },
+  textInterest: {
+    padding: 20,
   },
 });
