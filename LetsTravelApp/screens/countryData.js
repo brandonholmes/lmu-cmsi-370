@@ -1,6 +1,6 @@
-import mexicoImage from "../assets/Temple.png";
-import canadaImage from "../assets/Temple.png";
-import usaImage from "../assets/Temple.png";
+import mexicoImage from "../assets/mexicoImage.png";
+import canadaImage from "../assets/canadaImage.png";
+import usaImage from "../assets/usaImage.png";
 
 const data = {
   USA: {

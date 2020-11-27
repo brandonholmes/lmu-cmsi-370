@@ -2,10 +2,11 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { data } from "./countryData";
 
-export default function SafteyTips({ navigation }) {
+export default function pointOfInterest({ navigation }) {
   const country = navigation.getParam("country");
-  const pointOfInterest = data[country].Interest;
-  const MexicoImage = data[country].Image;
+  const textInterest = data[country].Interest;
+  const countryImage = data[country].Image;
+
   return (
     <View style={styles.background}>
       <View style={styles.titleContainer}>
@@ -13,10 +14,10 @@ export default function SafteyTips({ navigation }) {
       </View>
 
       <View style={styles.paragraph}>
-        <Text style={styles.textInterest}> {pointOfInterest} </Text>
+        <Text style={styles.textInterest}> {textInterest} </Text>
       </View>
 
-      <Image source={MexicoImage} style={styles.logo} />
+      <Image source={countryImage} style={styles.countryImage} />
     </View>
   );
 }
@@ -57,11 +58,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
   },
-  logo: {
-    marginTop: 30,
+  countryImage: {
+    marginTop: 20,
     alignSelf: "center",
     width: 350,
-    height: 300,
+    height: 270,
     overflow: "hidden",
   },
   textInterest: {
