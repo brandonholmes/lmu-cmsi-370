@@ -11,23 +11,20 @@ import { Button } from "react-native-elements";
 import { data } from "./countryData";
 
 export default function currency({ navigation }) {
-  const homeCountry = "Mexico";
   const country = navigation.getParam("country");
-
   const [text, setText] = React.useState("");
   const [results, setResults] = React.useState("");
-
-  const dollarSymbol = {
-    USA: "$",
-    Mexico: "$",
-    Canada: "$",
-  };
+  const [homeCountry, setCountry] = React.useState("");
 
   function calculateAmount() {
-    setResults(
-      data[homeCountry].dollarSymbol +
-        (data[country].exchange[homeCountry] * text).toFixed(2)
-    );
+    if (!(homeCountry in data[country].exchange)) {
+      setResults("Not valid country!");
+    } else {
+      setResults(
+        data[homeCountry].dollarSymbol +
+          (data[country].exchange[homeCountry] * text).toFixed(2)
+      );
+    }
   }
 
   return (
@@ -39,6 +36,11 @@ export default function currency({ navigation }) {
           placeholder="Amount"
           onChangeText={(text) => setText(text)}
           keyboardType="number-pad"
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Home Country"
+          onChangeText={(homeCountry) => setCountry(homeCountry)}
         />
         <Text style={styles.baseText}>{results}</Text>
         <View style={styles.myButton}>

@@ -14,41 +14,53 @@ import { Marker } from "react-native-maps";
 import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
 let id = 0;
 
-class DefaultMarkers extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      markers: [],
-    };
-  }
+// class DefaultMarkers extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       markers: [],
+//     };
+//   }
 
-  onMapPress(e) {
-    this.setState({
-      markers: [
-        {
-          coordinate: e.nativeEvent.coordinate,
-          key: id++,
-        },
-      ],
-    });
-    Keyboard.dismiss();
-    console.log(e.nativeEvent.coordinate);
-  }
+//   async onMapPress(e) {
+//     this.setState({
+//       markers: [
+//         {
+//           coordinate: e.nativeEvent.coordinate,
+//           key: id++,
+//         },
+//       ],
+//     });
+//     Keyboard.dismiss();
+//     let longitude = e.nativeEvent.coordinate["longitude"];
+//     let latitude = e.nativeEvent.coordinate["latitude"];
+//     const res = await fetch(
+//       `http://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true`
+//     );
+//     const body = await res.json();
+//     if ("result" in body) {
+//       console.log("worked");
+//     } else {
+//       throw body;
+//     }
+//     // const body = await res.json();
+//     console.log(e.nativeEvent.coordinate);
+//   }
 
-  render() {
-    return (
-      <MapView
-        style={styles.mapStyle}
-        provider={this.props.provider}
-        onPress={(e) => this.onMapPress(e)}
-      >
-        {this.state.markers.map((marker) => (
-          <Marker key={marker.key} coordinate={marker.coordinate} />
-        ))}
-      </MapView>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <MapView
+//         style={styles.mapStyle}
+//         provider={this.props.provider}
+//         onPress={(e) => this.onMapPress(e)}
+//       >
+//         {this.state.markers.map((marker) => (
+//           <Marker key={marker.key} coordinate={marker.coordinate} />
+//         ))}
+//       </MapView>
+//     );
+//   }
+// }
 
 export default function Home({ navigation }) {
   const countries = new Set(["USA", "Mexico", "Canada"]);
@@ -132,7 +144,7 @@ export default function Home({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <DefaultMarkers />
+        <MapView style={styles.mapStyle} />
         <Text style={styles.titleText}>Search your Destination</Text>
         <TextInput
           style={styles.textInput}
