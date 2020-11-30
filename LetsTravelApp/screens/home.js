@@ -8,77 +8,27 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
-import MapView from "react-native-maps";
-import { Marker } from "react-native-maps";
-
+import MapView from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
 import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
-let id = 0;
-
-// class DefaultMarkers extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       markers: [],
-//     };
-//   }
-
-//   async onMapPress(e) {
-//     this.setState({
-//       markers: [
-//         {
-//           coordinate: e.nativeEvent.coordinate,
-//           key: id++,
-//         },
-//       ],
-//     });
-//     Keyboard.dismiss();
-//     let longitude = e.nativeEvent.coordinate["longitude"];
-//     let latitude = e.nativeEvent.coordinate["latitude"];
-//     const res = await fetch(
-//       `http://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true`
-//     );
-//     const body = await res.json();
-//     if ("result" in body) {
-//       console.log("worked");
-//     } else {
-//       throw body;
-//     }
-//     // const body = await res.json();
-//     console.log(e.nativeEvent.coordinate);
-//   }
-
-//   render() {
-//     return (
-//       <MapView
-//         style={styles.mapStyle}
-//         provider={this.props.provider}
-//         onPress={(e) => this.onMapPress(e)}
-//       >
-//         {this.state.markers.map((marker) => (
-//           <Marker key={marker.key} coordinate={marker.coordinate} />
-//         ))}
-//       </MapView>
-//     );
-//   }
-// }
+import { data } from "./countryData";
 
 export default function Home({ navigation }) {
-  const countries = new Set(["USA", "Mexico", "Canada"]);
-  const [country, setCountry] = React.useState("");
-  const [text, setText] = React.useState("");
-  const [isVisible, setIsVisible] = useState(false);
+  const [countryOfTravel, setCountry] = useState("");
+  const [text, setText] = useState("");
+  const [isBottomSheetVisible, setBottomSheetIsVisible] = useState(false);
   const [validCountry, setValidCountry] = useState(false);
 
+  // Lists all the items on the navigation bar to navigate to different areas.
   const list = [
     {
       title: "Currency Exchange",
       onPress: () => {
         if (validCountry) {
-          setIsVisible(false);
-          navigation.navigate("Currency", { country: country });
+          setBottomSheetIsVisible(false);
+          navigation.navigate("Currency", { country: countryOfTravel });
         } else {
           setCountry("Enter Above First");
-          setIsVisible(false);
+          setBottomSheetIsVisible(false);
         }
       },
     },
@@ -86,11 +36,11 @@ export default function Home({ navigation }) {
       title: "Point's Of Interest",
       onPress: () => {
         if (validCountry) {
-          setIsVisible(false);
-          navigation.navigate("POI", { country: country });
+          setBottomSheetIsVisible(false);
+          navigation.navigate("POI", { country: countryOfTravel });
         } else {
           setCountry("Enter Above First");
-          setIsVisible(false);
+          setBottomSheetIsVisible(false);
         }
       },
     },
@@ -98,11 +48,11 @@ export default function Home({ navigation }) {
       title: "Safety Tips",
       onPress: () => {
         if (validCountry) {
-          setIsVisible(false);
-          navigation.navigate("Safety", { country: country });
+          setBottomSheetIsVisible(false);
+          navigation.navigate("Safety", { country: countryOfTravel });
         } else {
           setCountry("Enter Above First");
-          setIsVisible(false);
+          setBottomSheetIsVisible(false);
         }
       },
     },
@@ -110,11 +60,11 @@ export default function Home({ navigation }) {
       title: "Do's and Don'ts",
       onPress: () => {
         if (validCountry) {
-          setIsVisible(false);
-          navigation.navigate("DoDont", { country: country });
+          setBottomSheetIsVisible(false);
+          navigation.navigate("DoDont", { country: countryOfTravel });
         } else {
           setCountry("Enter Above First");
-          setIsVisible(false);
+          setBottomSheetIsVisible(false);
         }
       },
     },
@@ -126,12 +76,14 @@ export default function Home({ navigation }) {
     },
   ];
 
-  const pressHandler = () => {
-    setIsVisible(true);
+  // Sets the bottom sheet to be visible when the navButton is pressed
+  const pressNavHandler = () => {
+    setBottomSheetIsVisible(true);
   };
 
+  // Checks to see if the search bar input is valid before moving on
   function checkInput() {
-    if (countries.has(text)) {
+    if (text in data) {
       setCountry(text);
       setValidCountry(true);
     } else {
@@ -144,7 +96,7 @@ export default function Home({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <MapView style={styles.mapStyle} />
+        <MapView style={styles.mapStyle} onPress={Keyboard.dismiss} />
         <Text style={styles.titleText}>Search your Destination</Text>
         <TextInput
           style={styles.textInput}
@@ -156,7 +108,7 @@ export default function Home({ navigation }) {
         <View style={styles.submitButton}>
           <Button type="solid" title="Submit" onPress={checkInput} />
         </View>
-        <Text style={styles.countryText}>{country}</Text>
+        <Text style={styles.displayCountryText}>{countryOfTravel}</Text>
         <View style={styles.navButton}>
           <Button
             icon={
@@ -168,10 +120,10 @@ export default function Home({ navigation }) {
               end: { x: 1, y: 0.5 },
             }}
             borderRadius={20}
-            onPress={pressHandler}
+            onPress={pressNavHandler}
           />
         </View>
-        <BottomSheet isVisible={isVisible}>
+        <BottomSheet isVisible={isBottomSheetVisible}>
           {list.map((l, i) => (
             <ListItem
               key={i}
@@ -190,38 +142,14 @@ export default function Home({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  mapStyle: {
-    position: "absolute",
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
   container: {
     flex: 1,
     flexDirection: "column",
   },
-  navButton: {
+  mapStyle: {
     position: "absolute",
-    justifyContent: "center",
-    flex: 1,
-    alignItems: "center",
-    color: "#fff",
-    bottom: "20%",
-    right: "43%",
-  },
-  search: {
-    flex: 2,
-    justifyContent: "center",
-    alignItems: "stretch",
-  },
-  text: {
-    textAlign: "center",
-    fontFamily: "rowdies",
-    fontSize: 30,
-  },
-  logo: {
-    width: "100%",
-    height: "100%",
-    overflow: "hidden",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
   titleText: {
     fontWeight: "bold",
@@ -235,23 +163,6 @@ const styles = StyleSheet.create({
     marginTop: 50,
     fontFamily: "rowdies",
   },
-  countryText: {
-    fontWeight: "bold",
-    fontSize: 30,
-    textAlign: "center",
-    alignSelf: "center",
-    color: "#000",
-    position: "absolute",
-    marginTop: 150,
-    fontFamily: "rowdies",
-  },
-  submitButton: {
-    paddingTop: 80,
-    fontSize: 15,
-    alignSelf: "flex-end",
-    position: "absolute",
-    right: 20,
-  },
   textInput: {
     textAlign: "center",
     width: 250,
@@ -262,5 +173,31 @@ const styles = StyleSheet.create({
     marginTop: 80,
     backgroundColor: "#FFF",
     marginLeft: 20,
+  },
+  submitButton: {
+    paddingTop: 80,
+    fontSize: 15,
+    alignSelf: "flex-end",
+    position: "absolute",
+    right: 20,
+  },
+  displayCountryText: {
+    fontWeight: "bold",
+    fontSize: 30,
+    textAlign: "center",
+    alignSelf: "center",
+    color: "#000",
+    position: "absolute",
+    marginTop: 150,
+    fontFamily: "rowdies",
+  },
+  navButton: {
+    position: "absolute",
+    justifyContent: "center",
+    flex: 1,
+    alignItems: "center",
+    color: "#fff",
+    bottom: "20%",
+    right: "43%",
   },
 });

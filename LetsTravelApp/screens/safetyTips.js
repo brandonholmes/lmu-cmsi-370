@@ -1,70 +1,47 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
+import Unorderedlist from "react-native-unordered-list";
 import { data } from "./countryData";
 
-const USAsummary =
-  "Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.";
-
-const USAlodging =
-  "Quis vestibulum lacus fermentum ut. Etiam enim leo, lobortis in risus ac, fringilla fringilla orci. Cras non sagittis nulla, at eleifend arcu. Nam imperdiet ex id elit ultrices, quis gravida metus elementum. Vivamus ante elit, rhoncus at congue non, posuere a magna.";
-
-export default function SafteyTips({ navigation }) {
+export default function SafetyTips({ navigation }) {
+  const countryOfTravel = navigation.getParam("country");
+  const transportation = data[countryOfTravel].safetyTips.recTrans;
+  const countrySummary = data[countryOfTravel].safetyTips.summary;
+  const countryLodging = data[countryOfTravel].safetyTips.lodging;
+  console.log(transportation);
   return (
-    <View style={styles.background}>
+    <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}> Saftey Tips </Text>
       </View>
-
-      <View style={styles.paragraph}>
-        <Text> {USAsummary} </Text>
+      <Text style={styles.subTitle}>Summary</Text>
+      <View style={styles.textBox}>
+        <Text style={styles.textBorder}> {countrySummary} </Text>
       </View>
-
-      <Text style={styles.title02}>Recommended Modes Of Transport</Text>
-
-      <View style={styles.bulletParagraph}>
-        <View style={styles.row}>
-          <View style={styles.bullet}>
-            <Text>{"\u2022" + " "}</Text>
-          </View>
-          <View style={styles.bulletText}>
-            <Text>Train</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.bullet}>
-            <Text>{"\u2022" + " "}</Text>
-          </View>
-          <View style={styles.bulletText}>
-            <Text>Cab</Text>
-          </View>
-        </View>
-
-        <View style={styles.row}>
-          <View style={styles.bullet}>
-            <Text>{"\u2022" + " "}</Text>
-          </View>
-          <View style={styles.bulletText}>
-            <Text>Rental Car</Text>
-          </View>
+      <Text style={styles.subTitle}>Recommended Modes Of Transport</Text>
+      <View style={styles.textBox}>
+        <View style={styles.textBorder}>
+          <Unorderedlist bulletUnicode={0x2022}>
+            <Text>{transportation[0]}</Text>
+          </Unorderedlist>
+          <Unorderedlist bulletUnicode={0x2022}>
+            <Text>{transportation[1]}</Text>
+          </Unorderedlist>
+          <Unorderedlist bulletUnicode={0x2022}>
+            <Text>{transportation[2]}</Text>
+          </Unorderedlist>
         </View>
       </View>
-
-      <Text style={styles.title03}>Lodging</Text>
-      <View style={styles.paragraph02}>
-        <Text> {USAlodging} </Text>
+      <Text style={styles.subTitle}>Lodging</Text>
+      <View style={styles.textBox}>
+        <Text style={styles.textBorder}> {countryLodging} </Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  backButton: {
-    fontSize: 18,
-    textAlign: "center",
-    backgroundColor: "purple",
-  },
-  background: {
+  container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -77,58 +54,35 @@ const styles = StyleSheet.create({
     fontSize: 40,
   },
   titleContainer: {
-    paddingTop: 40,
-    paddingBottom: 10,
+    paddingTop: 10,
+    paddingBottom: 20,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
     justifyContent: "flex-start",
   },
-
-  title02: {
-    fontSize: 20,
-    fontFamily: "rowdies",
-    paddingLeft: 20,
-    textAlign: "left",
-  },
-  title03: {
-    fontSize: 20,
-    fontFamily: "rowdies",
-    paddingLeft: 20,
-    textAlign: "left",
-  },
-  paragraph: {
+  textBox: {
     flexShrink: 1,
     margin: 20,
+    marginTop: 0,
     fontSize: 18,
-    textAlign: "left",
     backgroundColor: "white",
     borderStyle: "solid",
     borderWidth: 2,
     borderRadius: 8,
   },
-  paragraph02: {
-    flexShrink: 1,
-    margin: 10,
-    fontSize: 18,
-    textAlign: "left",
-    backgroundColor: "white",
-    borderStyle: "solid",
-    borderWidth: 2,
-    borderRadius: 8,
+  textBorder: {
+    padding: 20,
+  },
+  bulletList: {
+    textAlign: "center",
+    padding: 20,
   },
 
-  bulletParagraph: {
-    paddingTop: 10,
-    alignContent: "center",
-    alignItems: "center",
+  subTitle: {
+    fontSize: 20,
+    fontFamily: "rowdies",
+    paddingLeft: 20,
+    textAlign: "left",
   },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  bullet: {
-    width: 10,
-  },
-  bulletText: {},
 });

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TouchableWithoutFeedback,
   StyleSheet,
@@ -7,22 +7,22 @@ import {
   Keyboard,
   TextInput,
 } from "react-native";
-import { Button } from "react-native-elements";
+import { Button } from "react-native-elements"; // Used React Native UI Library for button
 import { data } from "./countryData";
 
 export default function currency({ navigation }) {
-  const country = navigation.getParam("country");
-  const [text, setText] = React.useState("");
-  const [results, setResults] = React.useState("");
-  const [homeCountry, setCountry] = React.useState("");
+  const countryOfTravel = navigation.getParam("country");
+  const [homeCountry, setCountry] = useState("");
+  const [text, setText] = useState("");
+  const [results, setResults] = useState("");
 
-  function calculateAmount() {
-    if (!(homeCountry in data[country].exchange)) {
+  function calculateCurrencyExchange() {
+    if (!(homeCountry in data[countryOfTravel].exchange)) {
       setResults("Not valid country!");
     } else {
       setResults(
         data[homeCountry].dollarSymbol +
-          (data[country].exchange[homeCountry] * text).toFixed(2)
+          (data[countryOfTravel].exchange[homeCountry] * text).toFixed(2)
       );
     }
   }
@@ -30,7 +30,7 @@ export default function currency({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <Text style={styles.baseText}>Currency Exchange</Text>
+        <Text style={styles.titleText}>Currency Exchange</Text>
         <TextInput
           style={styles.textInput}
           placeholder="Amount"
@@ -40,11 +40,15 @@ export default function currency({ navigation }) {
         <TextInput
           style={styles.textInput}
           placeholder="Home Country"
-          onChangeText={(homeCountry) => setCountry(homeCountry)}
+          onChangeText={(countryOfTravel) => setCountry(countryOfTravel)}
         />
         <Text style={styles.baseText}>{results}</Text>
-        <View style={styles.myButton}>
-          <Button type="solid" title="Submit" onPress={calculateAmount} />
+        <View style={styles.submitButton}>
+          <Button
+            type="solid"
+            title="Submit"
+            onPress={calculateCurrencyExchange}
+          />
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -58,9 +62,18 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     paddingTop: 25,
   },
-  baseText: {
+  titleText: {
     fontWeight: "bold",
     fontSize: 30,
+    textAlign: "center",
+    alignSelf: "center",
+    color: "#000",
+    marginTop: 50,
+    fontFamily: "rowdies",
+  },
+  baseText: {
+    fontWeight: "bold",
+    fontSize: 25,
     textAlign: "center",
     alignSelf: "center",
     color: "#000",
@@ -77,7 +90,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
     backgroundColor: "#FFF",
   },
-  myButton: {
+  submitButton: {
     paddingTop: 80,
     marginTop: 50,
     fontSize: 15,

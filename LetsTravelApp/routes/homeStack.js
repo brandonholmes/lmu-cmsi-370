@@ -1,11 +1,19 @@
+/* 
+The homeStack.js will put all the screens into one navigation
+stack, to be used throughout the app, by navigating to
+differnet parts of application, like going back home or going
+to currency exchange.  Imported into App.js to use.
+*/
+
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 
+// Importing all screens to put into navigation stack
 import Loading from "../screens/loading";
 import Home from "../screens/home";
 import Currency from "../screens/currency";
 import Main from "../screens/mainPage";
-import POI from "../screens/pointsOfInterest";
+import PointOfInterest from "../screens/pointsOfInterest";
 import Safety from "../screens/safetyTips";
 import DoDont from "../screens/doDont";
 
@@ -44,7 +52,7 @@ const screens = {
     },
   },
   POI: {
-    screen: POI,
+    screen: PointOfInterest,
     navigationOptions: {
       headerShown: true,
       title: "",

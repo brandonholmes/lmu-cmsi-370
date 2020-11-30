@@ -1,47 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { data } from "./countryData";
+import { data } from "./countryData"; // Importing hard coded backend data
 
 export default function DoAndDont({ navigation }) {
   const country = navigation.getParam("country");
-  const Do = data[country].Do;
-  const Dont = data[country].Dont;
+  const dos = data[country].Do;
+  const donts = data[country].Dont;
   return (
-    <View style={styles.background}>
+    <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}> Do's And Don'ts </Text>
       </View>
-
       <View style={styles.subtitleContainer}>
         <Text style={styles.subtitleText}>Do:</Text>
       </View>
-
-      <View style={styles.do}>
-        <Text style={styles.textDoDont}> {Do} </Text>
+      <View style={styles.doStyle}>
+        <Text style={styles.textBorder}> {dos} </Text>
       </View>
-
       <View style={styles.subtitleContainer}>
         <Text style={styles.subtitleText}>Don't:</Text>
       </View>
-
-      <View style={styles.dont}>
-        <Text style={styles.textDoDont}> {Dont} </Text>
+      <View style={styles.dontStyle}>
+        <Text style={styles.textBorder}> {donts} </Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  backButton: {
-    fontSize: 18,
-    textAlign: "center",
-    backgroundColor: "purple",
-  },
-  background: {
+  container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
     backgroundColor: "#34526D",
+  },
+  titleContainer: {
+    paddingTop: 40,
+    paddingBottom: 10,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
   titleText: {
     height: 50,
@@ -65,15 +64,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "flex-start",
   },
-  titleContainer: {
-    paddingTop: 40,
-    paddingBottom: 10,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    justifyContent: "flex-start",
-  },
-  dont: {
+  dontStyle: {
     flexShrink: 1,
     margin: 20,
     fontSize: 18,
@@ -83,8 +74,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
   },
-
-  do: {
+  doStyle: {
     flexShrink: 1,
     margin: 20,
     fontSize: 18,
@@ -94,15 +84,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 8,
   },
-
-  logo: {
-    marginTop: 50,
-    alignSelf: "center",
-    width: 350,
-    height: 300,
-    overflow: "hidden",
-  },
-  textDoDont: {
+  textBorder: {
     padding: 20,
   },
 });

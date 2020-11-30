@@ -1,3 +1,11 @@
+/*
+Includes data from all the countries we 
+want to include, acting as a backend for our 
+application.  When we navigate the app, using 
+USA, or Canada, it will change the information
+based on this backend object we created.
+*/
+
 import mexicoImage from "../assets/mexicoImage.png";
 import canadaImage from "../assets/canadaImage.png";
 import usaImage from "../assets/usaImage.png";
@@ -5,7 +13,7 @@ import usaImage from "../assets/usaImage.png";
 const data = {
   USA: {
     name: "USA",
-    safteyTips: {
+    safetyTips: {
       summary:
         'Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.",',
       recTrans: ["Train", "Cab", "Rental Car"],
@@ -27,7 +35,7 @@ const data = {
   },
   Mexico: {
     name: "Mexico",
-    safteyTips: {
+    safetyTips: {
       summary:
         'Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.",',
       recTrans: ["Train", "Cab", "Rental Car"],
@@ -49,7 +57,7 @@ const data = {
   },
   Canada: {
     name: "Canada",
-    safteyTips: {
+    safetyTips: {
       summary:
         'Loresm ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper, sem vitae pharetra interdum, felis arcu porttitor nisl, ac vulputate massa diam eu neque. Quisque at ligula ac elit porttitor imperdiet. Sed in lectus interdum, aliquet metus nec, sagittis sem. Nunc pharetra a nunc sed elementum. Nam congue sollicitudin mauris, nec egestas risus pulvina.Ut tristique accumsan libero, quis vestibulum lacus fermentum ut.",',
       recTrans: ["Train", "Cab", "Rental Car"],

@@ -3,20 +3,18 @@ import { StyleSheet, View, Text, Image } from "react-native";
 import { data } from "./countryData";
 
 export default function pointOfInterest({ navigation }) {
-  const country = navigation.getParam("country");
-  const textInterest = data[country].Interest;
-  const countryImage = data[country].Image;
+  const countryOfTravel = navigation.getParam("country");
+  const countryTextInterest = data[countryOfTravel].Interest;
+  const countryImage = data[countryOfTravel].Image;
 
   return (
-    <View style={styles.background}>
+    <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}> Points of Interest </Text>
       </View>
-
-      <View style={styles.paragraph}>
-        <Text style={styles.textInterest}> {textInterest} </Text>
+      <View style={styles.textBox}>
+        <Text style={styles.textBorder}> {countryTextInterest} </Text>
       </View>
-
       <Image source={countryImage} style={styles.countryImage} />
     </View>
   );
@@ -28,7 +26,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     backgroundColor: "purple",
   },
-  background: {
+  container: {
     flex: 1,
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -48,7 +46,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
   },
-  paragraph: {
+  textBox: {
     flexShrink: 1,
     margin: 20,
     fontSize: 18,
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
     height: 270,
     overflow: "hidden",
   },
-  textInterest: {
+  textBorder: {
     padding: 20,
   },
 });

@@ -1,3 +1,10 @@
+/*
+This file loads a custom downloaded font from 
+google fonts api loads the navigator, which was from 
+the homeStack.js file.  That includes all of our screens
+starting with the loading screen to get started. 
+*/
+
 import React, { useState } from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
