@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
+import { Icon, Button } from "react-native-elements";
 
 export default function Loading({ navigation }) {
   const goHome = () => {

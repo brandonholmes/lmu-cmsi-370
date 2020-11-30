@@ -8,7 +8,6 @@ export default function SafetyTips({ navigation }) {
   const transportation = data[countryOfTravel].safetyTips.recTrans;
   const countrySummary = data[countryOfTravel].safetyTips.summary;
   const countryLodging = data[countryOfTravel].safetyTips.lodging;
-  console.log(transportation);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>

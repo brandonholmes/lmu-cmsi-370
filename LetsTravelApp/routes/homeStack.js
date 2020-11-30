@@ -12,7 +12,6 @@ import { createAppContainer } from "react-navigation";
 import Loading from "../screens/loading";
 import Home from "../screens/home";
 import Currency from "../screens/currency";
-import Main from "../screens/mainPage";
 import PointOfInterest from "../screens/pointsOfInterest";
 import Safety from "../screens/safetyTips";
 import DoDont from "../screens/doDont";
@@ -24,14 +23,6 @@ const screens = {
       headerShown: false,
     },
   },
-
-  Main: {
-    screen: Main,
-    navigationOptions: {
-      headerShown: false,
-    },
-  },
-
   Home: {
     screen: Home,
     navigationOptions: {
