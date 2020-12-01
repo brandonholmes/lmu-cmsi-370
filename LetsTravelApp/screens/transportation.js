@@ -6,20 +6,38 @@ import { data } from "./countryData";
 export default function SafetyTips({ navigation }) {
   const countryOfTravel = navigation.getParam("country");
   const transportation = data[countryOfTravel].safetyTips.recTrans;
-  const countrySummary = data[countryOfTravel].safetyTips.summary;
-  const countryLodging = data[countryOfTravel].safetyTips.lodging;
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}> Saftey Tips </Text>
+        <Text style={styles.titleText}>Transportation</Text>
       </View>
-      <Text style={styles.subTitle}>Summary</Text>
+      <Text style={styles.subTitle}>Take this Transportation</Text>
       <View style={styles.textBox}>
-        <Text style={styles.textBorder}> {countrySummary} </Text>
+        <View style={styles.textBorder}>
+          <Unorderedlist bulletUnicode={0x2022} style={styles.decripText}>
+            <Text style={styles.decripText}>{transportation[0]}</Text>
+          </Unorderedlist>
+          <Unorderedlist bulletUnicode={0x2022} style={styles.decripText}>
+            <Text style={styles.decripText}>{transportation[1]}</Text>
+          </Unorderedlist>
+          <Unorderedlist bulletUnicode={0x2022} style={styles.decripText}>
+            <Text style={styles.decripText}>{transportation[2]}</Text>
+          </Unorderedlist>
+        </View>
       </View>
-      <Text style={styles.subTitle}>Lodging</Text>
+      <Text style={styles.subTitle}>Avoid this Transportation</Text>
       <View style={styles.textBox}>
-        <Text style={styles.textBorder}> {countryLodging} </Text>
+        <View style={styles.textBorder}>
+          <Unorderedlist bulletUnicode={0x2022} style={styles.decripText}>
+            <Text style={styles.decripText}>{transportation[0]}</Text>
+          </Unorderedlist>
+          <Unorderedlist bulletUnicode={0x2022} style={styles.decripText}>
+            <Text style={styles.decripText}>{transportation[1]}</Text>
+          </Unorderedlist>
+          <Unorderedlist bulletUnicode={0x2022} style={styles.decripText}>
+            <Text style={styles.decripText}>{transportation[2]}</Text>
+          </Unorderedlist>
+        </View>
       </View>
     </View>
   );

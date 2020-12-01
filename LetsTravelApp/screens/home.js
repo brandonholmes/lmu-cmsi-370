@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   StyleSheet,
   View,
@@ -7,79 +7,19 @@ import {
   TextInput,
   Keyboard,
   TouchableWithoutFeedback,
+  TouchableOpacity,
+  Linking,
 } from "react-native";
 import MapView from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
-import { Icon, Button, BottomSheet, ListItem } from "react-native-elements";
+import { Icon, Button } from "react-native-elements";
 import { data } from "./countryData";
+import RBSheet from "react-native-raw-bottom-sheet";
 
 export default function Home({ navigation }) {
+  const refRBSheet = useRef();
   const [countryOfTravel, setCountry] = useState("");
   const [text, setText] = useState("");
-  const [isBottomSheetVisible, setBottomSheetIsVisible] = useState(false);
   const [validCountry, setValidCountry] = useState(false);
-
-  // Lists all the items on the navigation bar to navigate to different areas.
-  const list = [
-    {
-      title: "Currency Exchange",
-      onPress: () => {
-        if (validCountry) {
-          setBottomSheetIsVisible(false);
-          navigation.navigate("Currency", { country: countryOfTravel });
-        } else {
-          setCountry("Enter Above First");
-          setBottomSheetIsVisible(false);
-        }
-      },
-    },
-    {
-      title: "Point's Of Interest",
-      onPress: () => {
-        if (validCountry) {
-          setBottomSheetIsVisible(false);
-          navigation.navigate("POI", { country: countryOfTravel });
-        } else {
-          setCountry("Enter Above First");
-          setBottomSheetIsVisible(false);
-        }
-      },
-    },
-    {
-      title: "Safety Tips",
-      onPress: () => {
-        if (validCountry) {
-          setBottomSheetIsVisible(false);
-          navigation.navigate("Safety", { country: countryOfTravel });
-        } else {
-          setCountry("Enter Above First");
-          setBottomSheetIsVisible(false);
-        }
-      },
-    },
-    {
-      title: "Do's and Don'ts",
-      onPress: () => {
-        if (validCountry) {
-          setBottomSheetIsVisible(false);
-          navigation.navigate("DoDont", { country: countryOfTravel });
-        } else {
-          setCountry("Enter Above First");
-          setBottomSheetIsVisible(false);
-        }
-      },
-    },
-    {
-      title: "Cancel",
-      containerStyle: { backgroundColor: "red" },
-      titleStyle: { color: "white" },
-      onPress: () => setIsVisible(false),
-    },
-  ];
-
-  // Sets the bottom sheet to be visible when the navButton is pressed
-  const pressNavHandler = () => {
-    setBottomSheetIsVisible(true);
-  };
 
   // Checks to see if the search bar input is valid before moving on
   function checkInput() {
@@ -109,33 +49,158 @@ export default function Home({ navigation }) {
           <Button type="solid" title="Submit" onPress={checkInput} />
         </View>
         <Text style={styles.displayCountryText}>{countryOfTravel}</Text>
-        <View style={styles.navButton}>
-          <Button
-            icon={
-              <Icon name="bars" type="font-awesome" color="black" size={40} />
-            }
-            linearGradientProps={{
-              colors: ["white", "white"],
-              start: { x: 0, y: 0.5 },
-              end: { x: 1, y: 0.5 },
+        <View style={styles.navButtonLocation}>
+          <TouchableOpacity
+            onPress={() => {
+              refRBSheet.current.open();
             }}
-            borderRadius={20}
-            onPress={pressNavHandler}
-          />
+            style={styles.navButton}
+          >
+            <Text>
+              <Icon name="bars" type="font-awesome" color="white" size={40} />
+            </Text>
+          </TouchableOpacity>
         </View>
-        <BottomSheet isVisible={isBottomSheetVisible}>
-          {list.map((l, i) => (
-            <ListItem
-              key={i}
-              containerStyle={l.containerStyle}
-              onPress={l.onPress}
+        <RBSheet
+          ref={refRBSheet}
+          height={400}
+          closeOnDragDown={true}
+          closeOnPressMask={true}
+          customStyles={{
+            wrapper: {
+              backgroundColor: "transparent",
+            },
+            draggableIcon: {
+              backgroundColor: "#000",
+            },
+          }}
+        >
+          <View style={styles.buttonFormatInNav}>
+            <TouchableOpacity
+              onPress={() => {
+                if (validCountry) {
+                  navigation.navigate("Currency", { country: countryOfTravel });
+                } else {
+                  setCountry("Enter Above First");
+                }
+                refRBSheet.current.close();
+              }}
+              style={styles.buttonInNav}
             >
-              <ListItem.Content>
-                <ListItem.Title style={l.titleStyle}>{l.title}</ListItem.Title>
-              </ListItem.Content>
-            </ListItem>
-          ))}
-        </BottomSheet>
+              <Text>
+                <Icon
+                  name="credit-card"
+                  type="font-awesome"
+                  color="black"
+                  size={40}
+                />
+              </Text>
+              <Text style={styles.buttonTitleInNav}>Credit Card</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (validCountry) {
+                  navigation.navigate("Safety", { country: countryOfTravel });
+                } else {
+                  setCountry("Enter Above First");
+                }
+                refRBSheet.current.close();
+              }}
+              style={styles.buttonInNav}
+            >
+              <Text>
+                <Icon
+                  name="info-circle"
+                  type="font-awesome"
+                  color="black"
+                  size={40}
+                />
+              </Text>
+              <Text style={styles.buttonTitleInNav}>Safety Tips</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (validCountry) {
+                  navigation.navigate("DoDont", { country: countryOfTravel });
+                } else {
+                  setCountry("Enter Above First");
+                }
+                refRBSheet.current.close();
+              }}
+              style={styles.buttonInNav}
+            >
+              <Text>
+                <Icon
+                  name="check-square"
+                  type="font-awesome"
+                  color="black"
+                  size={40}
+                />
+              </Text>
+              <Text style={styles.buttonTitleInNav}>Do's and Don'ts</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonFormatInNav}>
+            <TouchableOpacity
+              onPress={() => {
+                if (validCountry) {
+                  navigation.navigate("POI", { country: countryOfTravel });
+                } else {
+                  setCountry("Enter Above First");
+                }
+                refRBSheet.current.close();
+              }}
+              style={styles.buttonInNav}
+            >
+              <Text>
+                <Icon
+                  name="map-pin"
+                  type="font-awesome"
+                  color="black"
+                  size={40}
+                />
+              </Text>
+              <Text style={styles.buttonTitleInNav}>Points of Interest</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                Linking.openURL("https://translate.google.com/");
+              }}
+              style={styles.buttonInNav}
+            >
+              <Text>
+                <Icon
+                  name="language"
+                  type="font-awesome"
+                  color="black"
+                  size={40}
+                />
+              </Text>
+              <Text style={styles.buttonTitleInNav}>Translate</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                if (validCountry) {
+                  navigation.navigate("Trans", { country: countryOfTravel });
+                } else {
+                  setCountry("Enter Above First");
+                }
+                refRBSheet.current.close();
+              }}
+              style={styles.buttonInNav}
+            >
+              <Text>
+                <Icon
+                  name="train"
+                  type="font-awesome"
+                  color="black"
+                  size={40}
+                />
+              </Text>
+              <Text style={styles.buttonTitleInNav}>Transport</Text>
+            </TouchableOpacity>
+          </View>
+        </RBSheet>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -192,12 +257,44 @@ const styles = StyleSheet.create({
     fontFamily: "rowdies",
   },
   navButton: {
+    width: 70,
+    height: 70,
+    backgroundColor: "#1976D2",
+    alignItems: "center",
+    paddingTop: 5,
+    borderRadius: 70 / 2,
+    margin: 20,
+    justifyContent: "space-around",
+  },
+  navButtonLocation: {
     position: "absolute",
     justifyContent: "center",
     flex: 1,
     alignItems: "center",
     color: "#fff",
-    bottom: "20%",
-    right: "43%",
+    bottom: "5%",
+    left: "5%",
+  },
+
+  buttonInNav: {
+    width: 100,
+    height: 100,
+    backgroundColor: "#00FFC2",
+    paddingVertical: 10,
+    alignItems: "center",
+    borderRadius: 50,
+    margin: 10,
+    borderRadius: 20,
+  },
+  buttonTitleInNav: {
+    color: "black",
+    fontSize: 19,
+    textAlign: "center",
+    fontFamily: "rowdies",
+  },
+  buttonFormatInNav: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

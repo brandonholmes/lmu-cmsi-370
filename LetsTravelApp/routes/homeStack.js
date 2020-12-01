@@ -15,6 +15,7 @@ import Currency from "../screens/currency";
 import PointOfInterest from "../screens/pointsOfInterest";
 import Safety from "../screens/safetyTips";
 import DoDont from "../screens/doDont";
+import Transportation from "../screens/transportation";
 
 const screens = {
   Loading: {
@@ -31,6 +32,19 @@ const screens = {
   },
   Currency: {
     screen: Currency,
+    navigationOptions: {
+      headerShown: true,
+      title: "",
+      headerStyle: {
+        backgroundColor: "#34526D",
+        shadowColor: "transparent",
+      },
+      headerTintColor: "#fff",
+      headerBackTitle: "Back",
+    },
+  },
+  Trans: {
+    screen: Transportation,
     navigationOptions: {
       headerShown: true,
       title: "",
