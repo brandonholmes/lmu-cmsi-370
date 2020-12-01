@@ -33,7 +33,7 @@ export default function Home({ navigation }) {
       },
     },
     {
-      title: "Point's Of Interest",
+      title: "Points Of Interest",
       onPress: () => {
         if (validCountry) {
           setBottomSheetIsVisible(false);
