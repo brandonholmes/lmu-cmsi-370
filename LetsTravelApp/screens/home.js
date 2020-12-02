@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
-import MapView from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
+import MapView,{Marker} from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
 import { Icon, Button } from "react-native-elements";
 import { data } from "./countryData";
 import {countryCapitals} from "./CountryCapitials";
@@ -23,6 +23,21 @@ export default function Home({ navigation }) {
   const [countryOfTravel, setCountry] = useState("");
   const [text, setText] = useState("");
   const [validCountry, setValidCountry] = useState(false);
+
+  let currentCountryName = "Canada";
+  let currentCountryCapital = countryCapitals[currentCountryName];
+
+  /*
+  function mapMarker() {
+    return (
+    <Marker
+      coordinate={{ latitude: countryCapitals[currentCountryName].Latitude,longitude: countryCapitals[currentCountryName].Longitude }}
+      title={currentCountryName}
+      description={"Selected Country!"}
+    >
+    </Marker >)
+  }
+*/
 
   // Checks to see if the search bar input is valid before moving on
   function checkInput() {
@@ -80,7 +95,7 @@ export default function Home({ navigation }) {
 
 
           
-          <Text style={styles.buttonTitleInNav}>Currency Exchange</Text>
+          <Text style={styles.buttonTitleInNav}>Credit Card</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -101,7 +116,7 @@ export default function Home({ navigation }) {
               size={40}
             />
           </Text>
-          <Text style={styles.buttonTitleInNav}>Safety{"\n"}Tips</Text>
+          <Text style={styles.buttonTitleInNav}>Safety Tips</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -206,7 +221,15 @@ export default function Home({ navigation }) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
-        <MapView style={styles.mapStyle} onPress={Keyboard.dismiss} >
+        <MapView style={styles.mapStyle} onPress={Keyboard.dismiss} 
+        initialRegion={{
+          latitude: 37.1,
+          longitude: -95.7,
+          latitudeDelta: 10,
+          longitudeDelta: 45
+        }}
+        >
+     
 
         </MapView>
         <Text style={styles.titleText}>Search your Destination</Text>
@@ -338,7 +361,7 @@ const styles = StyleSheet.create({
   },
   buttonTitleInNav: {
     color: "black",
-    fontSize: 17,
+    fontSize: 19,
     textAlign: "center",
     fontFamily: "rowdies",
   },
