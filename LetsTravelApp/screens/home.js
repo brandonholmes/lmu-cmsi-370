@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, Component } from "react";
 import {
   StyleSheet,
   View,
@@ -13,7 +13,10 @@ import {
 import MapView from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
 import { Icon, Button } from "react-native-elements";
 import { data } from "./countryData";
+import {countryCapitals} from "./CountryCapitials";
 import RBSheet from "react-native-raw-bottom-sheet";
+
+
 
 export default function Home({ navigation }) {
   const refRBSheet = useRef();
@@ -24,6 +27,7 @@ export default function Home({ navigation }) {
   // Checks to see if the search bar input is valid before moving on
   function checkInput() {
     if (text in data) {
+      
       setCountry(text);
       setValidCountry(true);
     } else {
@@ -33,114 +37,105 @@ export default function Home({ navigation }) {
     Keyboard.dismiss();
   }
 
-  return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
-        <MapView style={styles.mapStyle} onPress={Keyboard.dismiss} />
-        <Text style={styles.titleText}>Search your Destination</Text>
-        <TextInput
-          style={styles.textInput}
-          placeholder="Country"
-          onChangeText={(text) => setText(text)}
-          clearButtonMode="while-editing"
-          clearTextOnFocus={true}
-        />
+  class SubmitUserCountryQuery extends Component{
+
+    render(){
+      return (
+        
         <View style={styles.submitButton}>
-          <Button type="solid" title="Submit" onPress={checkInput} />
+        <Button type="solid" title="Submit" onPress={checkInput} />
         </View>
-        <Text style={styles.displayCountryText}>{countryOfTravel}</Text>
-        <View style={styles.navButtonLocation}>
-          <TouchableOpacity
-            onPress={() => {
-              refRBSheet.current.open();
-            }}
-            style={styles.navButton}
-          >
-            <Text>
-              <Icon name="bars" type="font-awesome" color="white" size={40} />
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <RBSheet
-          ref={refRBSheet}
-          height={400}
-          closeOnDragDown={true}
-          closeOnPressMask={true}
-          customStyles={{
-            wrapper: {
-              backgroundColor: "transparent",
-            },
-            draggableIcon: {
-              backgroundColor: "#000",
-            },
+      )
+    }
+  }
+
+  class MenuNavigationTopRow extends Component{
+
+    render (){
+      return (
+
+      <View style={styles.buttonFormatInNav}>
+        <TouchableOpacity
+          onPress={() => {
+            if (validCountry) {
+              navigation.navigate("Currency", { country: countryOfTravel });
+            } else {
+              setCountry("Enter Above First");
+            }
+            refRBSheet.current.close();
           }}
+          style={styles.buttonInNav}
         >
-          <View style={styles.buttonFormatInNav}>
-            <TouchableOpacity
-              onPress={() => {
-                if (validCountry) {
-                  navigation.navigate("Currency", { country: countryOfTravel });
-                } else {
-                  setCountry("Enter Above First");
-                }
-                refRBSheet.current.close();
-              }}
-              style={styles.buttonInNav}
-            >
-              <Text>
-                <Icon
-                  name="credit-card"
-                  type="font-awesome"
-                  color="black"
-                  size={40}
-                />
-              </Text>
-              <Text style={styles.buttonTitleInNav}>Credit Card</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                if (validCountry) {
-                  navigation.navigate("Safety", { country: countryOfTravel });
-                } else {
-                  setCountry("Enter Above First");
-                }
-                refRBSheet.current.close();
-              }}
-              style={styles.buttonInNav}
-            >
-              <Text>
-                <Icon
-                  name="info-circle"
-                  type="font-awesome"
-                  color="black"
-                  size={40}
-                />
-              </Text>
-              <Text style={styles.buttonTitleInNav}>Safety Tips</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                if (validCountry) {
-                  navigation.navigate("DoDont", { country: countryOfTravel });
-                } else {
-                  setCountry("Enter Above First");
-                }
-                refRBSheet.current.close();
-              }}
-              style={styles.buttonInNav}
-            >
-              <Text>
-                <Icon
-                  name="check-square"
-                  type="font-awesome"
-                  color="black"
-                  size={40}
-                />
-              </Text>
-              <Text style={styles.buttonTitleInNav}>Do's and Don'ts</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.buttonFormatInNav}>
+          <Text>
+            <Icon
+              name="credit-card"
+              type="font-awesome"
+              color="black"
+              size={40}
+            />
+          </Text>
+
+
+
+
+
+          
+          <Text style={styles.buttonTitleInNav}>Credit Card</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            if (validCountry) {
+              navigation.navigate("Safety", { country: countryOfTravel });
+            } else {
+              setCountry("Enter Above First");
+            }
+            refRBSheet.current.close();
+          }}
+          style={styles.buttonInNav}
+        >
+          <Text>
+            <Icon
+              name="info-circle"
+              type="font-awesome"
+              color="black"
+              size={40}
+            />
+          </Text>
+          <Text style={styles.buttonTitleInNav}>Safety Tips</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            if (validCountry) {
+              navigation.navigate("DoDont", { country: countryOfTravel });
+            } else {
+              setCountry("Enter Above First");
+            }
+            refRBSheet.current.close();
+          }}
+          style={styles.buttonInNav}
+        >
+          <Text>
+            <Icon
+              name="check-square"
+              type="font-awesome"
+              color="black"
+              size={40}
+            />
+          </Text>
+          <Text style={styles.buttonTitleInNav}>Do's and Don'ts</Text>
+        </TouchableOpacity>
+
+      </View>
+
+      )
+    }
+
+  }
+  
+  class MenuNavigationBottomRow extends Component {
+    render(){
+      return (
+        <View style={styles.buttonFormatInNav}>
             <TouchableOpacity
               onPress={() => {
                 if (validCountry) {
@@ -162,6 +157,7 @@ export default function Home({ navigation }) {
               </Text>
               <Text style={styles.buttonTitleInNav}>Points of Interest</Text>
             </TouchableOpacity>
+
             <TouchableOpacity
               onPress={() => {
                 Linking.openURL("https://translate.google.com/");
@@ -200,11 +196,65 @@ export default function Home({ navigation }) {
               <Text style={styles.buttonTitleInNav}>Transport</Text>
             </TouchableOpacity>
           </View>
+      )
+    }
+
+  }
+
+
+
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <MapView style={styles.mapStyle} onPress={Keyboard.dismiss} >
+
+        </MapView>
+        <Text style={styles.titleText}>Search your Destination</Text>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Country"
+          onChangeText={(text) => setText(text)}
+          clearButtonMode="while-editing"
+          clearTextOnFocus={true}
+        />
+        <SubmitUserCountryQuery> </SubmitUserCountryQuery>
+        <Text style={styles.displayCountryText}>{countryOfTravel}</Text>
+        <View style={styles.navButtonLocation}>
+          <TouchableOpacity
+            onPress={() => {
+              refRBSheet.current.open();
+            }}
+            style={styles.navButton}
+          >
+            <Text>
+              <Icon name="bars" type="font-awesome" color="white" size={40} />
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <RBSheet
+          ref={refRBSheet}
+          height={400}
+          closeOnDragDown={true}
+          closeOnPressMask={true}
+          customStyles={{
+            wrapper: {
+              backgroundColor: "transparent",
+            },
+            draggableIcon: {
+              backgroundColor: "#000",
+            },
+          }}
+        >
+        <MenuNavigationTopRow></MenuNavigationTopRow>
+        <MenuNavigationBottomRow></MenuNavigationBottomRow>
+          
         </RBSheet>
       </View>
     </TouchableWithoutFeedback>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
