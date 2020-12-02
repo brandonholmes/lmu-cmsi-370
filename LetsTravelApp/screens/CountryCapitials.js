@@ -1199,7 +1199,7 @@ export const countryCapitals = {
     Latitude: 51.507351,
     Longitude: -0.127758,
   },
-  USA: {
+  "United States": {
     Capital: "Washington",
     Latitude: 38.907192,
     Longitude: -77.036871,

@@ -12,9 +12,10 @@ import {
 } from "react-native";
 import MapView, { Marker } from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
 import { Icon, Button } from "react-native-elements";
-import { data } from "./countryData";
+import { countryData } from "./countryData";
 import { countryCapitals } from "./CountryCapitials";
 import RBSheet from "react-native-raw-bottom-sheet";
+import { getCountryFromCoordinates } from "./MapLogic";
 
 export default function Home({ navigation }) {
   const refRBSheet = useRef();
@@ -25,7 +26,6 @@ export default function Home({ navigation }) {
   const [markerCoordinate, setCoordinate] = useState({
     markers: [],
   });
-
   function onMapPress(e) {
     setCoordinate({
       markers: [
@@ -36,8 +36,38 @@ export default function Home({ navigation }) {
       ],
     });
     Keyboard.dismiss();
-    console.log("Set Coordinate");
-    console.log(e.nativeEvent.coordinate);
+    getCountryFromCoordinates(
+      e.nativeEvent.coordinate.latitude,
+      e.nativeEvent.coordinate.longitude
+    )
+      .then((data) => {
+        if (data.status.code == 200) {
+          if (data.results.length > 0) {
+            let country = data.results[0].components.country;
+            if (country === "United States of America") {
+              country = "United States";
+            }
+            if (country in countryData) {
+              setCountry(country);
+              setValidCountry(true);
+            } else {
+              setCountry("Invalid Country");
+              setValidCountry(false);
+            }
+            console.log(country);
+          }
+        } else if (data.status.code == 402) {
+          console.log("hit free trial daily limit");
+          console.log("become a customer: https://opencagedata.com/pricing");
+        } else {
+          // other possible response codes:
+          // https://opencagedata.com/api#codes
+          console.log("error", data.status.message);
+        }
+      })
+      .catch((error) => {
+        console.log("error", error.message);
+      });
   }
 
   function markCoordinateTextInput(country) {
@@ -56,7 +86,7 @@ export default function Home({ navigation }) {
 
   // Checks to see if the search bar input is valid before moving on
   function checkInput() {
-    if (text in data) {
+    if (text in countryData) {
       setCountry(text);
       markCoordinateTextInput(text);
       setValidCountry(true);
@@ -228,8 +258,9 @@ export default function Home({ navigation }) {
           clearButtonMode="while-editing"
           clearTextOnFocus={true}
         />
-        <SubmitUserCountryQuery> </SubmitUserCountryQuery>
 
+        <SubmitUserCountryQuery> </SubmitUserCountryQuery>
+        <Text style={styles.displayCountryText}>{countryOfTravel}</Text>
         <View style={styles.navButtonLocation}>
           <TouchableOpacity
             onPress={() => {

@@ -10,8 +10,8 @@ import mexicoImage from "../assets/mexicoImage.png";
 import canadaImage from "../assets/canadaImage.png";
 import usaImage from "../assets/usaImage.png";
 
-const data = {
-  USA: {
+const countryData = {
+  "United States": {
     name: "USA",
     safetyTips: {
       summary:
@@ -79,4 +79,4 @@ const data = {
   },
 };
 
-export { data };
+export { countryData };
