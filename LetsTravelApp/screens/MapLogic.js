@@ -1,20 +1,20 @@
 import * as openCageClient from "opencage-api-client"
 
 
-
+//https://opencagedata.com/sdks
 const superUnsafeStoredAPIKey = "2b40303aff3242b0892be10640293568"
 
 export  function getCountryFromCoordinates(latitude,longitude ){
 
 
-    openCageClient.geocode({q: `${latitude}, ${longitude}`, language: 'en',key:superUnsafeStoredAPIKey}).then(data => {
+    return openCageClient.geocode({q: `${latitude}, ${longitude}`, language: 'en',key:superUnsafeStoredAPIKey}).then(data => {
       // console.log(JSON.stringify(data));
       if (data.status.code == 200) {
         if (data.results.length > 0) {
           var place = data.results[0];
           console.log(place.formatted);
-          console.log(place.components.road);
-          console.log(place.annotations.timezone.name);
+          //Get and return the country name
+          return (data.results[0].components.country);
         }
       } else if (data.status.code == 402) {
         console.log('hit free trial daily limit');
