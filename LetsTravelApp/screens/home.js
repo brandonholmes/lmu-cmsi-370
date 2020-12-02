@@ -13,7 +13,7 @@ import {
 import MapView, { Marker } from "react-native-maps"; // Used React Native UI library called React Native MapView, for map
 import { Icon, Button } from "react-native-elements";
 import { countryData } from "./countryData";
-import { countryCapitals } from "./CountryCapitials";
+import { countryInformation } from "./CountryInformation";
 import RBSheet from "react-native-raw-bottom-sheet";
 import { getCountryFromCoordinates } from "./MapLogic";
 
@@ -75,8 +75,8 @@ export default function Home({ navigation }) {
       markers: [
         {
           coordinate: {
-            latitude: countryCapitals[country].Latitude,
-            longitude: countryCapitals[country].Longitude,
+            latitude: countryInformation[country].Latitude,
+            longitude: countryInformation[country].Longitude,
           },
           key: 0,
         },

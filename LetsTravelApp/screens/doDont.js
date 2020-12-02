@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import { data } from "./countryData"; // Importing hard coded backend data
+import { countryData } from "./countryData"; // Importing hard coded backend data
 
 export default function DoAndDont({ navigation }) {
   const country = navigation.getParam("country");
-  const dos = data[country].Do;
-  const donts = data[country].Dont;
+  const dos = countryData[country].Do;
+  const donts = countryData[country].Dont;
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>

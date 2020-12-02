@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
-import { data } from "./countryData";
+import { countryData } from "./countryData";
 
 export default function pointOfInterest({ navigation }) {
   const countryOfTravel = navigation.getParam("country");
-  const countryTextInterest = data[countryOfTravel].Interest;
-  const countryImage = data[countryOfTravel].Image;
+  const countryTextInterest = countryData[countryOfTravel].Interest;
+  const countryImage = countryData[countryOfTravel].Image;
 
   return (
     <View style={styles.container}>

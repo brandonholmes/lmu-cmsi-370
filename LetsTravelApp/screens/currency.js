@@ -8,7 +8,7 @@ import {
   TextInput,
 } from "react-native";
 import { Button } from "react-native-elements"; // Used React Native UI Library for button
-import { data } from "./countryData";
+import { countryData } from "./countryData";
 
 export default function currency({ navigation }) {
   const countryOfTravel = navigation.getParam("country");
@@ -17,12 +17,12 @@ export default function currency({ navigation }) {
   const [results, setResults] = useState("");
 
   function calculateCurrencyExchange() {
-    if (!(homeCountry in data[countryOfTravel].exchange)) {
+    if (!(homeCountry in countryData[countryOfTravel].exchange)) {
       setResults("Not valid country!");
     } else {
       setResults(
-        data[homeCountry].dollarSymbol +
-          (data[countryOfTravel].exchange[homeCountry] * text).toFixed(2)
+        countryData[homeCountry].dollarSymbol +
+          (countryData[countryOfTravel].exchange[homeCountry] * text).toFixed(2)
       );
     }
   }

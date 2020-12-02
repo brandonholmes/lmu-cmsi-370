@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
 import Unorderedlist from "react-native-unordered-list";
-import { data } from "./countryData";
+import { countryData } from "./countryData";
 
 export default function SafetyTips({ navigation }) {
   const countryOfTravel = navigation.getParam("country");
-  const transportation = data[countryOfTravel].safetyTips.recTrans;
-  const countrySummary = data[countryOfTravel].safetyTips.summary;
-  const countryLodging = data[countryOfTravel].safetyTips.lodging;
+  const transportation = countryData[countryOfTravel].safetyTips.recTrans;
+  const countrySummary = countryData[countryOfTravel].safetyTips.summary;
+  const countryLodging = countryData[countryOfTravel].safetyTips.lodging;
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
