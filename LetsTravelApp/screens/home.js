@@ -80,7 +80,7 @@ export default function Home({ navigation }) {
 
 
           
-          <Text style={styles.buttonTitleInNav}>Credit Card</Text>
+          <Text style={styles.buttonTitleInNav}>Currency Exchange</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -101,7 +101,7 @@ export default function Home({ navigation }) {
               size={40}
             />
           </Text>
-          <Text style={styles.buttonTitleInNav}>Safety Tips</Text>
+          <Text style={styles.buttonTitleInNav}>Safety{"\n"}Tips</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
@@ -338,7 +338,7 @@ const styles = StyleSheet.create({
   },
   buttonTitleInNav: {
     color: "black",
-    fontSize: 19,
+    fontSize: 17,
     textAlign: "center",
     fontFamily: "rowdies",
   },
