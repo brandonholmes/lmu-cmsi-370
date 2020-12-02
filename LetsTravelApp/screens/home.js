@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     color: "#fff",
     bottom: "5%",
-    left: "5%",
+    right: "5%",
   },
 
   buttonInNav: {
