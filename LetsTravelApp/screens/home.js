@@ -15,7 +15,7 @@ import { Icon, Button } from "react-native-elements";
 import { data } from "./countryData";
 import {countryCapitals} from "./CountryCapitials";
 import RBSheet from "react-native-raw-bottom-sheet";
-
+import {getCountryFromCoordinates} from "./MapLogic"
 
 
 export default function Home({ navigation }) {
@@ -26,6 +26,8 @@ export default function Home({ navigation }) {
 
   let currentCountryName = "Canada";
   let currentCountryCapital = countryCapitals[currentCountryName];
+
+  getCountryFromCoordinates(currentCountryCapital.Latitude,currentCountryCapital.Longitude);
 
   /*
   function mapMarker() {
