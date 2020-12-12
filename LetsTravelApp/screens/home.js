@@ -130,7 +130,7 @@ export default function Home({ navigation }) {
                 size={40}
               />
             </Text>
-            <Text style={styles.buttonTitleInNav}>Credit Card</Text>
+            <Text style={styles.buttonTitleInNav}>Currency Calculator</Text>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
