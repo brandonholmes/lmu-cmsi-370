@@ -22,9 +22,9 @@ project
 |   |   
 |   |---Milestone03
 |   |   |---Milestone03.pdf
-|   |   |
-|   |   Milestone04
-|   |   |---Milestone04.pdf
+|   |   
+|   |---Milestone04
+|       |---Milestone04.pdf
 |
 └---LetsTravelApp
 ```
